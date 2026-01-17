@@ -1,0 +1,41 @@
+{
+    "ccls.cache.directory":
+"/home/itvjg/OpenFOAM/OpenFOAM-v2406/build/linux64GccDPInt32Opt/ccls-cache",
+
+    "ccls.misc.compilationDatabaseDirectory":
+"/home/itvjg/OpenFOAM/OpenFOAM-v2406/build/linux64GccDPInt32Opt",
+
+    "C_Cpp.default.compileCommands":
+"/home/itvjg/OpenFOAM/OpenFOAM-v2406/etc/openfoam wmake -with-bear -s -j",
+
+    "C_Cpp.autocomplete": "Disabled",
+    "C_Cpp.errorSquiggles": "Disabled",
+    "C_Cpp.formatting": "Disabled",
+    "C_Cpp.intelliSenseEngine": "Disabled",
+    "files.associations": {
+        "hePsiSatThermo.C": "cpp",
+        "phaseTransportModel.C": "cpp",
+        "alphaTwoPhaseEqn.C": "cpp",
+        "compressibleMultiSpeciesFoam.C": "cpp",
+        "HRMExtend.C": "cpp",
+        "mixtureThermo.C": "cpp",
+        "compressibleMixtureThermo.C": "cpp",
+        "inletOutletEnergyFvPatchField.C": "cpp",
+        "fixedEnergyMPFvPatchScalarField.C": "cpp",
+        "phaseChangeModel.C": "cpp",
+        "dimensionedType.C": "cpp",
+        "fvMatrix.C": "cpp",
+        "inletOutletDensityFvPatchField.C": "cpp",
+        "saturationTemperatureFvPatchScalarField.C": "cpp",
+        "uniformNoOutflowPressureFvPatchScalarField.C": "cpp",
+        "fvPatchField.C": "cpp",
+        "Field.C": "cpp",
+        "compressiblePhaseChangeFoam.C": "cpp"
+    },
+    "terminal.integrated.suggest.quickSuggestions": {
+
+        "commands": "off",
+        "arguments": "off",
+        "unknown": "off"
+    }
+}
