@@ -1,0 +1,20 @@
+FROM jgaertner2/openfoam:v2406
+
+RUN mkdir -p /home/${OF_USER}/build/
+
+WORKDIR /home/${OF_USER}/build
+
+
+# Bundle lib source
+COPY lagrangian ./lagrangian
+COPY solver ./solver
+
+# First compile the code
+RUN . $foamDotFile \
+    && wclean lagrangian && wclean solver/dropletEvapFoam \
+    && wmake -j lagrangian && wmake -j solver/dropletEvapFoam
+
+# Add the Entrypoint
+COPY docker/entrypoint.sh entrypoint.sh
+RUN chmod +x ./entrypoint.sh
+ENTRYPOINT ["./entrypoint.sh"]

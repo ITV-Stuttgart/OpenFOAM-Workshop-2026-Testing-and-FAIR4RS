@@ -1,0 +1,31 @@
+/*--------------------------------*- C++ -*----------------------------------*\
+| =========                 |                                                 |
+| \\      /  F ield         | OpenFOAM: The Open Source CFD Toolbox           |
+|  \\    /   O peration     | Version:  5                                     |
+|   \\  /    A nd           | Web:      www.OpenFOAM.org                      |
+|    \\/     M anipulation  |                                                 |
+\*---------------------------------------------------------------------------*/
+FoamFile
+{
+    version     2.0;
+    format      ascii;
+    class       dictionary;
+    location    "constant";
+    object      phaseChangeModel; // here we use the HRM model: homogeneous relaxation model, the evaporation does niot happen instaneously , it takes some time                                             
+}
+// * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
+
+
+type HRM;
+
+
+HRM
+{
+    //pCrit           1.3e+06; // The critical pressure of the hydrogen  // https://www.engineeringtoolbox.com/gas-critical-temperature-pressure-d_161.html
+    
+    pCrit           50.5e+05; // The critical pressure of the oxygen  // https://www.engineeringtoolbox.com/gas-critical-temperature-pressure-d_161.html
+    
+    
+    highPressure    true;  // here we are using the high pressure model to calculate the relaxation time..and this model needs the critical pressure value 
+}
+// ************************************************************************* //

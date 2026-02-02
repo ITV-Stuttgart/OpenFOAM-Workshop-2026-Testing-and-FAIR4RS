@@ -1,6 +1,0 @@
-SOURCE = \
-main.C \
-evapModel-Test.C \
-nHeptaneDroplet-Test.C \
-
-# sources

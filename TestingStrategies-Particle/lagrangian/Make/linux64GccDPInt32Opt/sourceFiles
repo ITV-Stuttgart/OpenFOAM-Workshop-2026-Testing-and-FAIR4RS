@@ -1,9 +1,0 @@
-SOURCE = \
-supportClasses/particleThermoMixture/baseParticleThermoMixture/baseParticleThermoMixture.C \
-supportClasses/particleThermoMixture/baseParticleThermoMixture/newBaseParticleThermoMixture.C \
-supportClasses/particleThermoMixture/particleThermoMixture/particleThermoMixtures.C \
-$(BASECLOUDS)/evapDropletCloud/evapDropletCloud.C \
-$(DERIVEDPARCELS)/basicEvapDropletParcel/defineBasicEvapDropletParcel.C \
-$(DERIVEDPARCELS)/basicEvapDropletParcel/makeBasicEvapDropletParcelSubmodels.C \
-
-# sources

@@ -1,0 +1,129 @@
+/*--------------------------------*- C++ -*----------------------------------*\
+| =========                 |                                                 |
+| \\      /  F ield         | OpenFOAM: The Open Source CFD Toolbox           |
+|  \\    /   O peration     | Version:  2.2.2                                 |
+|   \\  /    A nd           | Web:      www.OpenFOAM.org                      |
+|    \\/     M anipulation  |                                                 |
+\*---------------------------------------------------------------------------*/
+FoamFile
+{
+    version     2.0;
+    format      ascii;
+    class       dictionary;
+    location    "constant";
+    object     fuelCloud1Properties;
+}
+// * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
+
+solution
+{
+    active                    true;
+    coupled                   true;
+    transient                  yes;
+    cellValueSourceCorrection   on;
+
+    sourceTerms
+    {
+        schemes
+        {
+            U                   explicit 1;
+            h                   explicit 1;
+            rho                 explicit 1;
+        }
+    }
+
+    interpolationSchemes
+    {
+        U              cellPoint;
+	    thermo:mu           cell;
+        muEff               cell;
+        magSqrGradf         cell;
+        T                   cell;
+        Cp                  cell;
+        kappa               cell;
+        p                   cell;
+        rho                 cell;
+        Yi                  cell;
+    }
+
+    integrationSchemes
+    {
+        U                  Euler;
+        T                  Euler;
+        h                  Euler;
+    }
+}
+
+constantProperties        // Ref: NIST
+{
+    rho0            684;
+    T0              300; // [K]
+    Cp0            1000;
+}
+
+subModels
+{
+    // Kinematic Sub Models Model
+
+    particleForces
+    {
+        sphereDrag;
+    }
+
+    dispersionModel none;
+
+    stochasticCollisionModel none;
+
+    dispersionModel none;
+ 
+    surfaceFilmModel none;
+    
+    patchInteractionModel standardWallInteraction;
+    standardWallInteractionCoeffs
+    {
+        type            rebound;
+    }
+
+    // Thermo Cloud Sub Models
+
+    heatTransferModel   none;
+
+    radiation           none;
+   
+    // Droplet Component -- Here ethanol
+    dropletComponent    C7H16;
+
+    evapModel           AbramzonSirignano;
+
+    
+    // Injection Model
+    injectionModels
+    {
+        model2
+        {
+            type                        manualInjection;  // manualInjection/patchInjection/none
+            parcelBasisType                       fixed;  // (number/mass/fixed)
+            massTotal                                 1;  // Total mass to inject [kg] (unused if parcelBasisType=fixed)
+            nParticle                                 1;  // Number of particles per parcel [-] (unused if parcelBasisType=mass)
+            massFlowRate                              0;  // unused
+            SOI                                       0;  // Start time of injection [s]
+            positionsFile            "dropletPositions";  // File with positions (if manualInjection)
+            initialVelocityType                    cell;  // unused
+            U0                                  (0 0 0);  // Initial parcel/particle velocity [m/s] (will be overwritten)
+
+
+            // Parcel size distribution model ---------------------------------------
+            // (fixedValue/uniform/normal/exponential/RosinRammler/multiNormal/general)
+            sizeDistribution
+            {
+                type        fixedValue;
+                fixedValueDistribution
+                {
+                    value       7E-4;
+                }
+            }
+        }
+    }
+}
+
+// ************************************************************************* //

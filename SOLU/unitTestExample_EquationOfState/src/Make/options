@@ -1,0 +1,21 @@
+EXE_INC = \
+    -I$(LIB_SRC)/finiteVolume/lnInclude \
+    -I$(LIB_SRC)/meshTools/lnInclude \
+    -I$(LIB_SRC)/surfMesh/lnInclude \
+    -I$(LIB_SRC)/thermophysicalModels/specie/lnInclude \
+    -I$(FOAM_USER_LIBBIN)/Catch2/include \
+    -I../../lagrangian/lnInclude \
+    -g -DFULLDEBUG
+
+
+EXE_LIBS = \
+    -lfiniteVolume \
+    -lmeshTools \
+    -lsurfMesh \
+    -lspecie \
+    -L$(FOAM_USER_LIBBIN) \
+    -llagrangianEvapDroplets \
+    -L$(FOAM_USER_LIBBIN)/Catch2/lib \
+    -lCatch2
+
+

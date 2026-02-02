@@ -1,1 +1,10 @@
 **/lnInclude
+
+**/Catch2
+
+**/linux64*
+
+**/*.exe
+**/*.sif
+
+SOLU/FAIR4RS/docker-container/testCase/singleDroplet/0.*
