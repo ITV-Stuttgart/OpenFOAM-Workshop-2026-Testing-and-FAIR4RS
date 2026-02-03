@@ -1,0 +1,45 @@
+/*--------------------------------*- C++ -*----------------------------------*\
+| =========                 |                                                 |
+| \\      /  F ield         | OpenFOAM: The Open Source CFD Toolbox           |
+|  \\    /   O peration     | Version:  2406                                  |
+|   \\  /    A nd           | Website:  www.openfoam.com                      |
+|    \\/     M anipulation  |                                                 |
+\*---------------------------------------------------------------------------*/
+FoamFile
+{
+    version     2.0;
+    format      ascii;
+    arch        "LSB;label=32;scalar=64";
+    class       dictionary;
+    location    "0.1/uniform/lagrangian/dropletCloud";
+    object      dropletCloudOutputProperties;
+}
+// * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
+
+injectionModel
+{
+    model2
+    {
+        volumeTotal     1.79594e-10;
+        massInjected    1.22843e-07;
+        nInjections     100;
+        parcelsAddedTotal 1;
+        timeStep0       0.1;
+    }
+}
+
+patchInteractionModel
+{
+    escapedParcels  0;
+    escapedMass     0;
+    standardWallInteraction
+    {
+        nEscape         6 ( 1 ( 0 ) 1 ( 0 ) 1 ( 0 ) 1 ( 0 ) 1 ( 0 ) 1 ( 0 ) );
+        massEscape      6 ( 1 ( 0 ) 1 ( 0 ) 1 ( 0 ) 1 ( 0 ) 1 ( 0 ) 1 ( 0 ) );
+        nStick          6 ( 1 ( 0 ) 1 ( 0 ) 1 ( 0 ) 1 ( 0 ) 1 ( 0 ) 1 ( 0 ) );
+        massStick       6 ( 1 ( 0 ) 1 ( 0 ) 1 ( 0 ) 1 ( 0 ) 1 ( 0 ) 1 ( 0 ) );
+    }
+}
+
+
+// ************************************************************************* //
