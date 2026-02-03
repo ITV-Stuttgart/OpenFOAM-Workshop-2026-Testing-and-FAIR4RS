@@ -1,0 +1,92 @@
+/*--------------------------------*- C++ -*----------------------------------*\
+| =========                 |                                                 |
+| \\      /  F ield         | OpenFOAM: The Open Source CFD Toolbox           |
+|  \\    /   O peration     | Version:  v2406                                 |
+|   \\  /    A nd           | Website:  www.openfoam.com                      |
+|    \\/     M anipulation  |                                                 |
+\*---------------------------------------------------------------------------*/
+FoamFile
+{
+    version     2.0;
+    format      ascii;
+    class       dictionary;
+    object      fvSchemes;
+}
+// * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
+
+ddtSchemes
+{
+    default         Euler;
+}
+
+gradSchemes
+{
+    default         Gauss linear;
+}
+
+divSchemes
+{
+    default             none;
+
+    div(phi,U)          Gauss limitedLinearV 1;
+
+    div(phi,Yi_h)       Gauss limitedLinear 1;
+    /*div(phi,Yi_h)       Gauss multivariateSelection
+    {
+        H2   limitedLinear01 1;   
+        H    limitedLinear01 1;   
+        O    limitedLinear01 1;   
+        O2   limitedLinear01 1;   
+        OH   limitedLinear01 1;   
+        H2O  limitedLinear01 1;   
+        HO2     limitedLinear01 1;
+        CH2  limitedLinear01 1;   
+        CH2S limitedLinear01 1; 
+        CH3  limitedLinear01 1;   
+        CH4  limitedLinear01 1;   
+        CO   limitedLinear01 1;   
+        CO2  limitedLinear01 1;   
+        HCO  limitedLinear01 1;
+        CH2O limitedLinear01 1;   
+        CH3O limitedLinear01 1;   
+        C2H4 limitedLinear01 1;   
+        C2H5 limitedLinear01 1;   
+        C2H6 limitedLinear01 1;
+        C2H5OH limitedLinear01 1;
+        N2   limitedLinear01 1;   
+        AR   limitedLinear01 1;
+        C3KET12 limitedLinear01 1;
+        h           limitedLinear   1;
+    };*/
+    div(phi,alpha)      Gauss limitedLinear 1;
+    div(phi,K)          Gauss limitedLinear 1;
+    div(phid,p)         Gauss limitedLinear 1;
+    div(((rho*nuEff)*dev2(T(grad(U)))))     Gauss linear;
+    
+    // turbulence model
+    div(phi,omega)  Gauss upwind;
+    div(phi,k)  Gauss upwind;
+    div(phi,epsilon)        Gauss upwind;
+}
+
+laplacianSchemes
+{
+    default         Gauss linear orthogonal;
+}
+
+interpolationSchemes
+{
+    default         linear;
+}
+
+snGradSchemes
+{
+    default         orthogonal;
+}
+
+wallDist
+{
+    method meshWave;
+}
+
+// ************************************************************************* //

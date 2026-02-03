@@ -1,0 +1,105 @@
+/*--------------------------------*- C++ -*----------------------------------*\
+| =========                 |                                                 |
+| \\      /  F ield         | OpenFOAM: The Open Source CFD Toolbox           |
+|  \\    /   O peration     | Version:  v2406                                 |
+|   \\  /    A nd           | Website:  www.openfoam.com                      |
+|    \\/     M anipulation  |                                                 |
+\*---------------------------------------------------------------------------*/
+FoamFile
+{
+    version     2.0;
+    format      ascii;
+    class       dictionary;
+    object      kinematicCloudProperties;
+}
+// * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
+
+solution
+{
+    active          true;
+    coupled         no;
+    transient       yes;
+    cellValueSourceCorrection no;
+
+    sourceTerms
+    {
+        schemes
+        {
+            U               semiImplicit 1;
+        }
+    }
+
+    interpolationSchemes
+    {
+        rho             cell;
+        U               cellPoint;
+        p               cell;
+        thermo:mu       cell;
+        T               cell;
+        Cp              cell;
+        kappa           cell;
+        Yi              cell;
+    }
+
+    integrationSchemes
+    {
+        U               Euler;
+        T               Euler;
+    }
+}
+
+constantProperties
+{
+    rho0            800;
+}
+
+subModels
+{
+    dropletComponent    C2H5OH;
+
+    evapModel           AbramzonSirignano;
+
+
+    // Inherited from ThermoCloud
+        heatTransferModel   none;
+
+        radiation           none;
+
+    // Inherited from KinematicCloud
+        dispersionModel none;
+
+        patchInteractionModel none;
+
+        stochasticCollisionModel none;
+
+        surfaceFilmModel none;
+
+        particleForces {}
+    // injectionModels
+    // {
+    //     model1
+    //     {
+    //         type            manualInjection;
+    //         massTotal       1; // unused - calculated by number of particles
+    //         parcelBasisType fixed;
+    //         nParticle       1;
+    //         SOI             0;
+    //         positionsFile   "parcelPositions";
+    //         U0              (0 0 0);
+    //         sizeDistribution
+    //         {
+    //             type fixedValue;
+    //             fixedValueDistribution
+    //             {
+    //                 value        DIAMETER;
+    //             }
+    //         }
+    //     }
+    // }
+
+
+}
+
+
+
+// ************************************************************************* //

@@ -1,0 +1,39 @@
+BootStrap: docker
+From: jgaertner2/openfoam:v2406
+
+%files
+    lagrangian /build/lagrangian
+    solver /build/solver
+
+%post
+    set +e
+    . $foamDotFile
+    cd /build
+    wclean lagrangian
+    wclean solver/dropletEvapFoam
+    wmake lagrangian
+    wmake solver/dropletEvapFoam
+
+    # Note: here wmake compiles to FOAM_USER_LIBBIN
+    # which resolves to /root/OpenFOAM/user-v2406
+    # However, during the execution of the container a user is known
+    # and it resolves  to /home/<user>/OpenFOAM/<user>-v2406/
+    # That is why we manually need to copy it to root
+    cp  "${FOAM_USER_LIBBIN}/liblagrangianEvapDroplets.so" "${FOAM_LIBBIN}/"
+    cp  "${FOAM_USER_APPBIN}/dropletEvapFoam" "${FOAM_APPBIN}/"
+
+
+%runscript
+    # Source OpenFOAM
+    . $foamDotFile
+
+    echo "Running dropletEvapFoam in working director:"
+    echo "$PWD"
+
+    echo "WM_PROJECT_DIR $WM_PROJECT_DIR"
+    echo "WM_PROJECT_USER_DIR $WM_PROJECT_USER_DIR"
+    if [[ "$#" -gt 0 ]]; then
+        exec dropletEvapFoam "$@"
+    else
+        exec dropletEvapFoam
+    fi

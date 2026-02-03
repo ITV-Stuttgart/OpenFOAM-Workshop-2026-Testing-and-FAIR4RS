@@ -1,0 +1,21 @@
+PARCELS=parcels
+BASEPARCELS=$(PARCELS)/baseClasses
+DERIVEDPARCELS=$(PARCELS)/derived
+
+/*New thermo model*/
+supportClasses/particleThermoMixture/baseParticleThermoMixture/baseParticleThermoMixture.C
+supportClasses/particleThermoMixture/baseParticleThermoMixture/newBaseParticleThermoMixture.C
+supportClasses/particleThermoMixture/particleThermoMixture/particleThermoMixtures.C
+
+CLOUDS=clouds
+BASECLOUDS=$(CLOUDS)/baseClasses
+DERIVEDCLOUDS=$(CLOUDS)/derived
+
+$(BASECLOUDS)/evapDropletCloud/evapDropletCloud.C
+
+
+/* thermo parcel sub-models */
+$(DERIVEDPARCELS)/basicEvapDropletParcel/defineBasicEvapDropletParcel.C
+$(DERIVEDPARCELS)/basicEvapDropletParcel/makeBasicEvapDropletParcelSubmodels.C
+
+LIB = $(FOAM_USER_LIBBIN)/liblagrangianEvapDroplets

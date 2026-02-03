@@ -1,0 +1,44 @@
+#!/bin/bash
+#
+#Description
+#    Script to build the test executable
+#
+#Author
+#    Jan Wilhelm Gärtner <jan.gaertner@outlook.de> Copyright (C) 2026
+#
+#*---------------------------------------------------------------------------*/
+
+#======================================================================
+# Compile and Install Catch2
+#======================================================================
+# Compile the Catch2 library into a static libray
+
+# if Catch2_install exist do not reinstall
+if [[ ! -d "${FOAM_USER_LIBBIN}/Catch2" ]]; then 
+    if [[ -d "Catch2_build" ]]; then
+        rm -r Catch2_build
+    fi
+
+    mkdir Catch2_build
+
+    cmake -S ./Catch2 -B Catch2_build -DBUILD_TESTING=OFF -DCMAKE_INSTALL_PREFIX=${FOAM_USER_LIBBIN}/Catch2
+
+
+    if [ __cmake_version_above ]; then 
+        cmake --build Catch2_build --parallel --target install
+    else
+        cmake --build Catch2_build --target install
+    fi
+
+    # clean up
+    rm -r Catch2_build
+fi
+
+#======================================================================
+# Compile Test Cases
+#======================================================================
+
+# Build the tests
+wmake src ${@}
+
+
