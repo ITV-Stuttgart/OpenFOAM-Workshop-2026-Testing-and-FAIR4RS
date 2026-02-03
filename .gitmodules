@@ -1,5 +1,5 @@
 [submodule "SOLU/TestingStrategies-Particle/tests/Catch2"]
-	path = SOLU/TestingStrategies-Particle/tests/Catch2
+	path = SOLU/integrationTest-Particle/tests/Catch2
 	url = https://github.com/catchorg/Catch2.git
 [submodule "SOLU/unitTestExample_EquationOfState/Catch2"]
 	path = SOLU/unitTest_EoS/Catch2
