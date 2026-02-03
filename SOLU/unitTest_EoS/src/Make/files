@@ -1,4 +1,4 @@
 main.C
 perfectGas-Test.C
 
-EXE = unitTest.exe
+EXE = ../unitTest.exe
