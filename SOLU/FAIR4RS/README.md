@@ -73,19 +73,19 @@ no longer be available.
 
 To generate the Apptainer image, run:
 ```bash
-apptainer build apptainer/test.sif apptainer/dropletEvapFoam.def
+apptainer build apptainer/solver.sif apptainer/dropletEvapFoam.def
 ```
 
 On Ubuntu 22.04 and earlier, Apptainer requires superuser privileges. Alternatively, it can be used with the --fakeroot option:
 ```bash
-apptainer build --fakeroot apptainer/test.sif apptainer/dropletEvapFoam.def
+apptainer build --fakeroot apptainer/solver.sif apptainer/dropletEvapFoam.def
 ```
 
 ## Run the Apptainer Image
 
 To execute the Apptainer image, navigate to the OpenFOAM case directory and run:
 ```bash
-apptainer run --fakeroot apptainer/test.sif
+apptainer run --fakeroot apptainer/solver.sif
 ```
 This will start the solver using the packaged environment.
 Without fakeroot the files written will still have root ownership.
